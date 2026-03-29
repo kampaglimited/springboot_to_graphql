@@ -1,0 +1,67 @@
+# Define what a Vehicle looks like:
+type Vehicle {
+    id: ID!
+    make: String
+    model: String
+    year: Int
+    vin: String
+    color: String
+    mileage: Int
+    price: Float
+    engineType: String
+    transmission: String
+    drivetrain: String
+    fuelType: String
+    doors: Int
+    seats: Int
+    bodyStyle: String
+    conditionStatus: String
+    inventoryStatus: String
+    ownerCount: Int
+    horsepower: Int
+    torque: Int
+    cityMpg: Float
+    highwayMpg: Float
+    weightGvwr: Float
+    wheelbase: Float
+}
+
+# Define the Input object representing data submitted by a user (e.g. creating/updating):
+input VehicleInput {
+    make: String!
+    model: String!
+    year: Int!
+    vin: String
+    color: String
+    mileage: Int
+    price: Float
+    engineType: String
+    transmission: String
+    drivetrain: String
+    fuelType: String
+    doors: Int
+    seats: Int
+    bodyStyle: String
+    conditionStatus: String
+    inventoryStatus: String
+    ownerCount: Int
+    horsepower: Int
+    torque: Int
+    cityMpg: Float
+    highwayMpg: Float
+    weightGvwr: Float
+    wheelbase: Float
+}
+
+# Queries are the equivalent of "GET" requests in REST
+type Query {
+    getAllVehicles: [Vehicle]
+    getVehicleById(id: ID!): Vehicle
+}
+
+# Mutations are the equivalent of "POST", "PUT", and "DELETE"
+type Mutation {
+    createVehicle(vehicle: VehicleInput!): Vehicle
+    updateVehicle(id: ID!, vehicle: VehicleInput!): Vehicle
+    deleteVehicle(id: ID!): Boolean
+}

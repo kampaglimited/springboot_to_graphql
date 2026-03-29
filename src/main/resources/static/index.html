@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Auto Fleet Management</title>
+    <meta name="description" content="A premium interface for managing your vehicle fleet, powered by Spring Boot and GraphQL.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>AutoFleet</h1>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="#">Dashboard</a></li>
+                <li><a href="#">Inventory</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <p>GraphQL Connected</p>
+                <div class="status-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-left">
+                    <h2>Vehicle Inventory</h2>
+                    <p class="subtitle">Manage your fleet directly via GraphQL.</p>
+                </div>
+                <div class="header-right">
+                    <button id="add-vehicle-btn" class="primary-btn">
+                        <span>+ Add Vehicle</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="dashboard-stats">
+                <div class="stat-card glass-panel">
+                    <h3>Total Vehicles</h3>
+                    <p class="stat-value" id="total-vehicles-count">0</p>
+                </div>
+                <div class="stat-card glass-panel">
+                    <h3>Avg Price</h3>
+                    <p class="stat-value" id="avg-price-stat">$0</p>
+                </div>
+            </div>
+
+            <section class="inventory-section">
+                <!-- Data Table -->
+                <div class="table-container glass-panel">
+                    <table class="vehicle-table">
+                        <thead>
+                            <tr>
+                                <th>Make</th>
+                                <th>Model</th>
+                                <th>Year</th>
+                                <th>Color</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vehicle-list-body">
+                            <!-- Rows dynamically populated by JS -->
+                        </tbody>
+                    </table>
+                    
+                    <div id="loading-state" class="loading-state">
+                        <div class="spinner"></div>
+                        <p>Loading inventory...</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add Vehicle Modal -->
+    <div id="add-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3>Add New Vehicle</h3>
+                <button class="close-btn" id="close-modal-btn">&times;</button>
+            </div>
+            <form id="add-vehicle-form" class="styled-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="make">Make</label>
+                        <input type="text" id="make" required placeholder="e.g. Tesla">
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input type="text" id="model" required placeholder="e.g. Model S">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <input type="number" id="year" required min="1900" max="2100" placeholder="2024">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price ($)</label>
+                        <input type="number" step="0.01" id="price" required placeholder="80000">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="color">Color</label>
+                    <input type="text" id="color" placeholder="Midnight Silver">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="secondary-btn" id="cancel-modal-btn">Cancel</button>
+                    <button type="submit" class="primary-btn">Save Vehicle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
